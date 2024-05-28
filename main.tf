@@ -1,9 +1,15 @@
-provider "local" {
+terraform {
+  backend "local" {
+    path = "./terraform.tfstate"
+  }
+}
 
+provider "local" {
+  # This provider doesn't need any configuration
 }
 
 resource "local_file" "hello_world" {
-  content  = <<-EOT
+  content = <<-EOT
   #!/usr/bin/env python3
   def greet():
       print("${var.greeting}")
@@ -11,5 +17,5 @@ resource "local_file" "hello_world" {
   if __name__ == "__main__":
       greet()
   EOT
-  filename = "${path.module}/hello_world.py"
-} 
+  filename = var.file_path
+}

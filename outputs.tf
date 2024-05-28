@@ -1,3 +1,3 @@
-output "hello_world_file_path" {
+output "file_path" {
   value = local_file.hello_world.filename
-} 
+}
